@@ -31,30 +31,31 @@ function App() {
   } , [])
  
   return (
-    <>
-      <div className=''>
-        <h1>Hello , supabase</h1>
-      </div>
+    <div className="min-h-screen bg-linear-to-br from-blue-50 to-purple-100 flex flex-col items-center py-8">
+      <header className="mb-8 w-full max-w-2xl text-center">
+        <h1 className="text-4xl font-extrabold text-blue-700 mb-2 drop-shadow">Supabase Users</h1>
+        <p className="text-lg text-gray-500">A modern user management app</p>
+      </header>
 
-      <div>
+      <section className="w-full max-w-xl bg-white rounded-2xl shadow-lg p-6 mb-8">
         <AddUser/>
-      </div>
+      </section>
 
-      <div>
-        {fetchError && (<p>{fetchError}</p>)}
-        <div>
+      <section className="w-full max-w-xl">
+        {fetchError && (<p className="text-red-500 text-center mb-4">{fetchError}</p>)}
+        <div className="grid gap-4">
           {
             users && (
-              <div>
+              <>
                 {users.map(users => (
-                 <UsersCard key={users.id} users={users} />
+                  <UsersCard key={users.id} users={users} />
                 ))}
-              </div>
+              </>
             )
           }
         </div>
-      </div>
-    </>
+      </section>
+    </div>
   )
 }
 
