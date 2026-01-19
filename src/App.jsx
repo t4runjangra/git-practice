@@ -10,6 +10,12 @@ function App() {
   const [fetchError , setFetchError] = useState(null)
   const [users , setUsers] = useState(null)
 
+  const handleDelete = (id) => {
+    setUsers(prev => {
+      return prev.filter(u => u.id != id)
+    })
+  }
+
   useEffect(() => {
     const fetchUsers = async () => {
       const {data , error} = await supabase.from('users').select()
@@ -48,7 +54,7 @@ function App() {
             users && (
               <>
                 {users.map(users => (
-                  <UsersCard key={users.id} users={users} />
+                  <UsersCard key={users.id} users={users} onDelete={handleDelete}/>
                 ))}
               </>
             )
